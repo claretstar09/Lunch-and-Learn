@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Name Balloting System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        h1, h2 {
+            color: #333;
+            text-align: center;
+        }
+        #ballotForm {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #results {
+            margin-top: 20px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Name Balloting System</h1>
+    
+    <div id="ballotForm">
+        <h2>Select a Name</h2>
+        <select id="nameSelect">
+            <option value="">--Please choose a name--</option>
+            <option value="1">Alice</option>
+            <option value="2">Bob</option>
+            <option value="3">Charlie</option>
+            <option value="4">Diana</option>
+            <option value="5">Ethan</option>
+            <option value="6">Fiona</option>
+            <option value="7">George</option>
+            <option value="8">Hannah</option>
+            <option value="9">Ian</option>
+            <option value="10">Julia</option>
+            <option value="11">Kevin</option>
+            <option value="12">Laura</option>
+        </select>
+        <button onclick="submitVote()">Submit Vote</button>
+    </div>
+
+    <div id="results" class="hidden">
+        <h2>Voting Results</h2>
+        <ul id="resultsList"></ul>
+    </div>
+
+    <script>
+        const votes = {
+            1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0,
+            7: 0, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0
+        };
+
+        const names = {
+            1: "Alice", 2: "Bob", 3: "Charlie", 4: "Diana",
+            5: "Ethan", 6: "Fiona", 7: "George", 8: "Hannah",
+            9: "Ian", 10: "Julia", 11: "Kevin", 12: "Laura"
+        };
+
+        function submitVote() {
+            const selectedValue = document.getElementById("nameSelect").value;
+            if (selectedValue) {
+                votes[selectedValue]++;
+                updateResults();
+                document.getElementById("results").classList.remove("hidden");
+            } else {
+                alert("Please select a name before submitting.");
+            }
+        }
+
+        function updateResults() {
+            const resultsList = document.getElementById("resultsList");
+            resultsList.innerHTML = "";
+            for (let i = 1; i <= 12; i++) {
+                const li = document.createElement("li");
+                li.textContent = `${names[i]}: ${votes[i]} vote${votes[i] !== 1 ? 's' : ''}`;
+                resultsList.appendChild(li);
+            }
+        }
+    </script>
+</body>
+</html>

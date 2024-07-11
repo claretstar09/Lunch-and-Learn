@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Name Selection System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        #selectionArea {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        #nameList {
+            text-align: left;
+            columns: 2;
+            -webkit-columns: 2;
+            -moz-columns: 2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Random Name Selection System</h1>
+    
+    <div id="selectionArea">
+        <h2>Click to Select a Random Name</h2>
+        <button onclick="selectRandomName()">Select Name</button>
+        <div id="result"></div>
+    </div>
+
+    <div id="nameList">
+        <h3>Name List:</h3>
+        <ol>
+            <li>Haruna</li>
+            <li>Babatunde</li>
+            <li>Edwin</li>
+            <li>Pius</li>
+            <li>Demola</li>
+            <li>Ibidapo</li>
+            <li>Osagie</li>
+            <li>Haruna2</li>
+            <li>Ibidapo2</li>
+            <li>Edwin2</li>
+            <li>Osagie2</li>
+            <li>Cosmas</li>
+        </ol>
+    </div>
+
+    <script>
+        const names = [
+            "Haruna", "Babatunde", "Edwin", "Pius", "Demola", "Ibidapo",
+            "Osagie", "Haruna2", "Ibidapo2", "Edwin2", "Osagie2", "Cosmas"
+        ];
+
+        function selectRandomName() {
+            const randomIndex = Math.floor(Math.random() * names.length);
+            const selectedName = names[randomIndex];
+            const resultElement = document.getElementById("result");
+            resultElement.textContent = `Selected: ${selectedName} (Number ${randomIndex + 1})`;
+            
+            // Highlight the selected name in the list
+            const listItems = document.querySelectorAll('#nameList li');
+            listItems.forEach((item, index) => {
+                if (index === randomIndex) {
+                    item.style.fontWeight = 'bold';
+                    item.style.color = '#4CAF50';
+                } else {
+                    item.style.fontWeight = 'normal';
+                    item.style.color = 'black';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

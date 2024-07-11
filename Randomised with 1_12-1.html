@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Name Selector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #nameList {
+            margin-top: 20px;
+            list-style-type: none;
+        }
+        li {
+            font-size: 20px;
+            margin: 5px 0;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Random Name Selector</h1>
+    <button onclick="randomizeNames()">Randomize Names</button>
+    <ul id="nameList"></ul>
+
+    <script>
+        const names = [
+            "Haruna", "Babatunde", "Edwin", "Pius", "Demola",
+            "Ibidapo", "Osagie", "Haruna2", "Ibidapo2", 
+            "Edwin2", "Osagie2", "Cosmas"
+        ];
+
+        function randomizeNames() {
+            // Shuffle the names array
+            const shuffledNames = names.sort(() => Math.random() - 0.5);
+            
+            // Get the name list element
+            const nameList = document.getElementById('nameList');
+            
+            // Clear any existing list items
+            nameList.innerHTML = '';
+            
+            // Add the shuffled names to the list
+            shuffledNames.forEach((name, index) => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${index + 1}. ${name}`;
+                nameList.appendChild(listItem);
+            });
+        }
+    </script>
+</body>
+</html>
